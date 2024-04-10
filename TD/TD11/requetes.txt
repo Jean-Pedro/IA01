@@ -1,0 +1,213 @@
+syntaxe à mettre avant les requêtes : 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ont: <http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#>
+
+
+Tous les cadets de gascogne :
+SELECT ?individuel
+ WHERE { ?individuel rdf:type ont:Cadet_de_Gascogne }
+
+Toutes les sous-classes de Noble :
+SELECT ?subClass
+ WHERE { ?subClass rdfs:subClassOf ont:Noble}
+
+Toutes les sous-classes de cadet de gascogne :
+SELECT ?subClass
+ WHERE { ?subClass rdfs:subClassOf ont:Cadet_de_Gascogne}
+
+Toutes les personnes qui aiment Roxanne :
+SELECT ?individuel
+ WHERE { ?individuel ont:aime ont:Roxanne }
+
+Toutes les personnes qui sont aimées par de guiche : 
+SELECT ?individuel
+ WHERE { ?individuel ont:est_aimé_par ont:de_Guide }
+
+
+Toutes les personnes qui aiment Roxanne et qui sont des cadets de gascogne : 
+SELECT ?individuel
+ WHERE { 
+ ?individuel ont:aime ont:Roxanne.
+ ?individuel rdf:type ont:Cadet_de_Gascogne
+ }
+
+Toutes les personnes qui aiment Roxanne et qui sont aimées par Roxanne : 
+SELECT ?individuel
+ WHERE { 
+ ?individuel ont:aime ont:Roxanne.
+ ?individuel ont:est_aimé_par ont:Roxanne
+ }
+
+Qu'est-ce que le régiment de guiche ?
+SELECT ?individuel
+WHERE {
+  ?individuel ont:appartient_à  ont:Régiment_1
+}
+* pas totalement sûr que ce soit ce qui est demandé
+
+A qui appartient l'épée de Cyrano ?
+SELECT ?individuel
+ WHERE { ont:Épée_de_Cyrano ont:appartient_à  ?individuel }
+
+Quels sont les métiers ?
+SELECT ?métiers
+ WHERE { ?métiers rdf:type ont:Metiers }
+
+Qui aime Roxanne et a pour métier soldat ?
+SELECT ?individuel
+ WHERE {
+ ?individuel ont:aime ont:Roxanne.
+ ?individuel ont:appartient_à ont:Soldat
+ }
+
+
+Toutes les personnes qui sont aimées par quelqu'un : 
+SELECT ?personne_aimé ?personne_qui_aime
+WHERE {
+  ?personne_aimé ont:est_aimé_par ?personne_qui_aime
+}
+
+Toutes les personnes qui aiment quelqu'un qui l'aime également : 
+SELECT ?personne1 ?personne2
+WHERE {
+  ?personne1 ont:est_aimé_par ?personne2.
+  ?personne2 ont:est_aimé_par ?personne1
+FILTER(str(?personne1) < str(?personne2))
+}
+* on utilise le filter pour éviter d'avoir deux fois le même couple mais en inversé
+
+Quels soldats exercent dans le régiment de de guiche ?
+SELECT ?individuel
+WHERE {
+  ?individuel ont:appartient_à  ont:Régiment_1.
+  ?individuel ont:appartient_à ont:Soldat
+}
+
+
+Nombre de personnes qui aiment Roxanne : 
+SELECT (STR(COUNT(?individuel)) as ?Nb_aime_Roxanne)
+WHERE {
+  ?individuel ont:aime  ont:Roxanne
+}
+* on utilise le str pour n'avoir affiché que le nombre, sinon la requête affiche "3"^^<http://www.w3.org/2001/XMLSchema#integer>
+
+
+Quels sont tous les arcs ?
+SELECT DISTINCT ?individu
+WHERE {
+  ?individu rdf:type/rdf:type* owl:NamedIndividual.
+}
+* on recherche les éléments de typeNamedIndividual, rdf:type/rdf:type* permet de prendre en compte les sous classes dans le cas où un élément appartiendrait à une sous classe
+
+Quelles sont toutes les relations ayant Cyrano comme arc sortant/entrant ?
+SELECT DISTINCT ?relation
+WHERE {
+  {
+    ?individuSortant ?relation ?individuEntrant.
+    FILTER (?individuSortant = ont:Cyrano)
+  }
+  UNION
+  {
+    ?individuEntrant ?relation ?individuSortant.
+    FILTER (?individuEntrant = ont:Cyrano)
+  }
+}
+* problème avec celle là, il affiche aussi les relations commençant par rdf
+
+autre version sans ces relations mais je ne suis pas sûr que ce soit comme ça qu'il faille faire :
+
+SELECT DISTINCT ?relation
+WHERE {
+  {
+    ont:Cyrano ?relation ?individuEntrant.
+FILTER EXISTS {
+      ?relation rdf:type/rdf:type* ?type.
+    }
+  }
+  UNION
+  {
+    ?individuEntrant ?relation ont:Cyrano.
+FILTER EXISTS {
+      ?relation rdf:type/rdf:type* ?type.
+    }
+  }
+}
+
+Quelles sont toutes les relations ayant Noble comme arc sortant/entrant ?
+
+SELECT DISTINCT ?relation
+WHERE {
+  {
+    ont:Noble ?relation ?individuEntrant.
+  }
+  UNION
+  {
+    ?individuEntrant ?relation ont:Noble.
+  }
+}
+
+
+ou
+
+SELECT DISTINCT ?relation
+WHERE {
+  {
+    ont:Noble ?relation ?individuEntrant.
+FILTER EXISTS {
+      ?relation rdf:type/rdf:type* ?type.
+    }
+  }
+  UNION
+  {
+    ?individuEntrant ?relation ont:Noble.
+FILTER EXISTS {
+      ?relation rdf:type/rdf:type* ?type.
+    }
+  }
+}
+
+
+cette requête n'a pas énormément d'intérêt car dans mon ontologie Noble n'a pas de lien
+
+
+Les personnes qui aiment Roxanne et qui ne sont pas des Cadets de Gascogne : 
+
+SELECT ?individuel
+WHERE {
+   ?individuel ont:aime ont:Roxanne.
+   ?individuel rdf:type/rdfs:subClassOf* ont:Noble.
+   FILTER NOT EXISTS { ?individuel rdf:type/rdfs:subClassOf* ont:Cadet_de_Gascogne }
+}
+
+Tous les soldats : 
+
+SELECT ?individuel
+WHERE {
+   ?individuel rdf:type/rdfs:subClassOf* ont:Humain.
+   ?individuel ont:appartient_à ont:Soldat
+}
+
+
+Les personnes qui n'apaprtiennent pas au Régiment de Guiche : 
+
+SELECT ?individuel
+WHERE {
+   ?individuel rdf:type/rdfs:subClassOf* ont:Humain.
+   FILTER NOT EXISTS { ?individuel ont:appartient_à ont:Régiment_1 }
+}
+
+
+La liste des personnes qui possèdent une arme et le nom de l'arme : 
+
+SELECT ?individuel ?arme
+WHERE {
+   ?individuel rdf:type/rdfs:subClassOf* ont:Humain.
+   ?arme rdf:type/rdf:type* ont:Armes.
+  ?arme ont:appartient_à ?individuel
+}
+
+
+

@@ -1,0 +1,323 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#"
+     xml:base="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:Cadets="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#aime -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#aime">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#est_aimé_par"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#appartient_à -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#appartient_à"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#est_aimé_par -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#est_aimé_par"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#est_de_taille -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#est_de_taille"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#prête_à_aider -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#prête_à_aider"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Armes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Armes"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cadet_de_Gascogne -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cadet_de_Gascogne">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Noble"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Mondaine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Caractéristiques_physiques -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Caractéristiques_physiques">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#appartient_à"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Humain"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Comte -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Comte">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Noble"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Humain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Humain"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Metiers -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Metiers"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Mondaine -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Mondaine">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Humain"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#prête_à_aider"/>
+                <owl:allValuesFrom rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cadet_de_Gascogne"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Nez -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Nez">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Caractéristiques_physiques"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Noble -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Noble">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Humain"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Taille -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Taille">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Caractéristiques_physiques"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Boulanger -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Boulanger">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Metiers"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Christian -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Christian">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cadet_de_Gascogne"/>
+        <aime rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment_1"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Soldat"/>
+        <est_aimé_par rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cyrano -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cyrano">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cadet_de_Gascogne"/>
+        <aime rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment_1"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Soldat"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Durandal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Durandal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Armes"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#de_Guiche"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Fleuriste -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Fleuriste">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Metiers"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Libraire -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Libraire">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Metiers"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Nez_Cyrano -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Nez_Cyrano">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Nez"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cyrano"/>
+        <est_de_taille rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Énorme"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Mondaine"/>
+        <aime rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Christian"/>
+        <est_aimé_par rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Christian"/>
+        <est_aimé_par rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cyrano"/>
+        <est_aimé_par rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#de_Guiche"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#de_Guiche"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Soldat -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Soldat">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Metiers"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#de_Guiche -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#de_Guiche">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Comte"/>
+        <aime rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Énorme -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Énorme">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Taille"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Épée_de_Cyrano -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Épée_de_Cyrano">
+        <rdf:type rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Armes"/>
+        <appartient_à rdf:resource="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cyrano"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Boulanger"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Christian"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Cyrano"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Durandal"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Fleuriste"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Libraire"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Nez_Cyrano"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Roxanne"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Régiment_1"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Soldat"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#de_Guiche"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Énorme"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/ponto/ontologies/2023/11/Cadets.owl#Épée_de_Cyrano"/>
+        </owl:distinctMembers>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
